@@ -1,4 +1,5 @@
-import { getAllPostsSlugs, getPostBySlug } from "../../../contentful/client"
+import ReactMarkdown from "react-markdown"
+import { getAllPostsSlugs, getPostBySlug } from "@/contentful/client"
 
 export async function generateStaticParams() {
     return await getAllPostsSlugs()
@@ -14,9 +15,9 @@ export async function generateMetadata({ params }) {
 export default async function BlogPost({ params }) {
     const post = await getPostBySlug(params.slug)
     return (
-        <>
-            <h1 className="font-bold text-3xl mb-5">{post.title}</h1>
-            <p>{post.text}</p>
-        </>
+        <article className="prose max-w-none">
+            <h1>{post.title}</h1>
+            <ReactMarkdown children={post.text} />
+        </article>
     )
 }
