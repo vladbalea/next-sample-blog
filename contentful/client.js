@@ -81,6 +81,10 @@ export async function getPostBySlug(slug) {
     }
     const post = response.items[0]
 
+    if (!post) {
+        console.error(`Could not fetch blog post: ${slug}!`)
+        return {}
+    }
     return {
         id: post.sys.id,
         slug: post.fields.slug,
@@ -139,6 +143,10 @@ export async function getCategoryBySlug(slug) {
     }
     const category = response.items[0]
 
+    if (!category) {
+        console.error(`Could not fetch category: ${slug}!`)
+        return {}
+    }
     return {
         id: category.sys.id,
         slug: category.fields.slug,
