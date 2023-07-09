@@ -12,6 +12,9 @@ export async function getPostsOnPage(page, categorySlug = undefined) {
     const limit = POSTS_PER_PAGE
     const skip = (page - 1) * limit
 
+    if (categorySlug !== undefined && Object.keys(category).length == 0) {
+        return []
+    }
     const response = await client.getEntries({
         content_type: "blogPost",
         order: "-sys.createdAt",
@@ -76,13 +79,11 @@ export async function getPostBySlug(slug) {
         "fields.slug": slug,
     })
     if (!response.items) {
-        console.error(`Could not fetch blog post: ${slug}!`)
         return {}
     }
     const post = response.items[0]
 
     if (!post) {
-        console.error(`Could not fetch blog post: ${slug}!`)
         return {}
     }
     return {
@@ -96,6 +97,9 @@ export async function getPostBySlug(slug) {
 export async function getNumberOfPages(categorySlug = undefined) {
     const category = categorySlug === undefined ? undefined : await getCategoryBySlug(categorySlug)
 
+    if (categorySlug !== undefined && Object.keys(category).length == 0) {
+        return []
+    }
     const response = await client.getEntries({
         content_type: "blogPost",
         select: "sys.id",
@@ -110,6 +114,9 @@ export async function getNumberOfPages(categorySlug = undefined) {
 export async function getPagesNumbersSlugs(categorySlug = undefined) {
     const category = categorySlug === undefined ? undefined : await getCategoryBySlug(categorySlug)
 
+    if (categorySlug !== undefined && Object.keys(category).length == 0) {
+        return []
+    }
     const response = await client.getEntries({
         content_type: "blogPost",
         select: "sys.id",
@@ -138,13 +145,11 @@ export async function getCategoryBySlug(slug) {
         "fields.slug": slug,
     })
     if (!response.items) {
-        console.error(`Could not fetch category: ${slug}!`)
         return {}
     }
     const category = response.items[0]
 
     if (!category) {
-        console.error(`Could not fetch category: ${slug}!`)
         return {}
     }
     return {
@@ -168,4 +173,21 @@ export async function getAllCategoriesSlugs() {
             category: category.fields.slug,
         }
     })
+}
+
+export async function getCategoriesAndPageNumbersSlugs() {
+    const paths = []
+    const categories = await getAllCategoriesSlugs()
+
+    for (var i = 0; i < categories.length; i++) {
+        const pages = await getPagesNumbersSlugs(categories[i].category)
+
+        for (var j = 0; j < pages.length; j++) {
+            paths.push({
+                category: categories[i].category,
+                page: pages[j].page
+            })
+        }
+    }
+    return paths
 }

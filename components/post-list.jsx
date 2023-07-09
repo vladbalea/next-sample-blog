@@ -4,7 +4,7 @@ export default function PostList({ posts }) {
     return (
         <>
             {
-                posts
+                posts.length > 0
                 ?
                 <>
                     {
