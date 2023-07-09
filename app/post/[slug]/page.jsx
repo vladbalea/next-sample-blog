@@ -1,5 +1,6 @@
 import ReactMarkdown from "react-markdown"
 import { getAllPostsSlugs, getPostBySlug } from "@/contentful/client"
+import React from "react"
 
 export async function generateStaticParams() {
     return await getAllPostsSlugs()
@@ -17,7 +18,7 @@ export default async function BlogPost({ params }) {
     return (
         <article className="prose max-w-none">
             <h1>{post.title}</h1>
-            <ReactMarkdown children={post.text} />
+            <ReactMarkdown>{post.text}</ReactMarkdown>
         </article>
     )
 }
