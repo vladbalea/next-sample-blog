@@ -1,4 +1,4 @@
-import { getAllCategoriesSlugs, getCategoryBySlug } from "@/contentful/client"
+import { getAllCategoriesSlugs, getCategoryBySlug } from "@/lib/contentful"
 
 export async function generateStaticParams() {
     return await getAllCategoriesSlugs()

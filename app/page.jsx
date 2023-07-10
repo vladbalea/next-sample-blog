@@ -1,6 +1,6 @@
 import Link from "next/link"
 import PostList from "@/components/post-list"
-import { getLatestPosts, getAllCategoriesSlugs, getCategoryBySlug } from "../contentful/client"
+import { getLatestPosts, getAllCategoriesSlugs, getCategoryBySlug } from "../lib/contentful"
 
 export default async function Home() {
     const posts = await getLatestPosts(4)

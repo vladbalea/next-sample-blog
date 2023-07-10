@@ -1,6 +1,6 @@
 import PostList from "@/components/post-list"
 import Pagination from "@/components/pagination"
-import { getPostsOnPage, getNumberOfPages, getPagesNumbersSlugs } from "@/contentful/client"
+import { getPostsOnPage, getNumberOfPages, getPagesNumbersSlugs } from "@/lib/contentful"
 
 export async function generateStaticParams() {
     return await getPagesNumbersSlugs()

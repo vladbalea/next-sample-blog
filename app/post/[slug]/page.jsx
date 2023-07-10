@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 import ReactMarkdown from "react-markdown"
-import { getAllPostsSlugs, getPostBySlug } from "@/contentful/client"
+import { getAllPostsSlugs, getPostBySlug } from "@/lib/contentful"
 import React from "react"
 
 export async function generateStaticParams() {

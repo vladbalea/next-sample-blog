@@ -1,7 +1,5 @@
 export const metadata = {
-    title: {
-        default: "All posts"
-    }
+    title: "All posts"
 }
 
 export default function AllPostsLayout({ children }) {
