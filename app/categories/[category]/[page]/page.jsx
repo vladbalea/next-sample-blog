@@ -1,17 +1,9 @@
 import PostList from "@/components/post-list"
 import Pagination from "@/components/pagination"
-import { getCategoriesAndPageNumbersSlugs, getPostsOnPage, getNumberOfPages, getCategoryBySlug } from "@/contentful/client"
+import { getPagesNumbersSlugs, getPostsOnPage, getNumberOfPages } from "@/contentful/client"
 
-export async function generateStaticParams() {
-    return await getCategoriesAndPageNumbersSlugs()
-}
-
-export async function generateMetadata({ params }) {
-    const category = await getCategoryBySlug(params.category)
-    const currentPage = parseInt(params.page)
-    return {
-        title: `${category.name} | Page ${currentPage}`,
-    }
+export async function generateStaticParams({ params }) {
+    return await getPagesNumbersSlugs(params.category)
 }
 
 export default async function CategoryPostsPaginated({ params }) {

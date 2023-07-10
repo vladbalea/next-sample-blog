@@ -6,13 +6,6 @@ export async function generateStaticParams() {
     return await getPagesNumbersSlugs()
 }
 
-export async function generateMetadata({ params }) {
-    const currentPage = parseInt(params.page)
-    return {
-        title: `All posts | Page ${currentPage}`,
-    }
-}
-
 export default async function AllPostsPaginated({ params }) {
     const currentPage = parseInt(params.page)
     const posts = await getPostsOnPage(currentPage)
