@@ -2,7 +2,7 @@ import '../styles/globals.css'
 import { Inter } from 'next/font/google'
 import { cn } from "@/lib/utils"
 import Header from '@/components/header'
-import { getAllRootCategories } from "@/lib/contentful"
+import { getAllCategories } from "@/lib/contentful"
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,7 +15,7 @@ export const metadata = {
 }
 
 export default async function RootLayout({ children }) {
-    const categories = await getAllRootCategories()
+    const categories = await getAllCategories()
     return (
         <html lang="en">
             <body className={cn(
