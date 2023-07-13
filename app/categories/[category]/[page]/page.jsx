@@ -1,6 +1,6 @@
-import PostList from "@/components/post-list"
-import Pagination from "@/components/pagination"
-import { getPagesNumbersSlugs, getPostsOnPage, getNumberOfPages } from "@/lib/contentful"
+import { notFound } from "next/navigation"
+import PostListPage from "@/components/post-list-page"
+import { getPagesNumbersSlugs, getCategoryBySlug, getPostsOnPage, getNumberOfPages } from "@/lib/contentful"
 
 export async function generateStaticParams({ params }) {
     return await getPagesNumbersSlugs(params.category)
@@ -8,18 +8,21 @@ export async function generateStaticParams({ params }) {
 
 export default async function CategoryPostsPaginated({ params }) {
     const categorySlug = params.category
+    const category = await getCategoryBySlug(categorySlug)
+
+    if (category === undefined) {
+        notFound()
+    }
     const currentPage = parseInt(params.page)
     const posts = await getPostsOnPage(currentPage, categorySlug)
     const totalPages = await getNumberOfPages(categorySlug)
     return (
-        <>
-            <h1>All posts on {categorySlug}</h1>
-            <PostList posts={posts} />
-            <Pagination
-                path={`categories/${categorySlug}`}
-                currentPage={currentPage}
-                totalPages={totalPages}
-            />
-        </>
+        <PostListPage
+            title={`All posts on ${category.name}`}
+            posts={posts}
+            path={`categories/${categorySlug}`}
+            currentPage={currentPage}
+            totalPages={totalPages}
+        />
     )
 }

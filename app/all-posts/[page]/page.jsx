@@ -1,5 +1,4 @@
-import PostList from "@/components/post-list"
-import Pagination from "@/components/pagination"
+import PostListPage from "@/components/post-list-page"
 import { getPostsOnPage, getNumberOfPages, getPagesNumbersSlugs } from "@/lib/contentful"
 
 export async function generateStaticParams() {
@@ -11,14 +10,12 @@ export default async function AllPostsPaginated({ params }) {
     const posts = await getPostsOnPage(currentPage)
     const totalPages = await getNumberOfPages()
     return (
-        <>
-            <h1>All posts!</h1>
-            <PostList posts={posts} />
-            <Pagination
-                path="all-posts"
-                currentPage={currentPage}
-                totalPages={totalPages}
-            />
-        </>
+        <PostListPage
+            title="All posts"
+            posts={posts}
+            path="all-posts"
+            currentPage={currentPage}
+            totalPages={totalPages}
+        />
     )
 }

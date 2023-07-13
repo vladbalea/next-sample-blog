@@ -4,7 +4,7 @@ import Date from "./date"
 
 export default function PostCard({ post }) {
     return (
-        <div className="h-96 md:w-96">
+        <div className="h-[28rem] sm:w-96 sm:h-96">
             <Link href={`/post/${post.slug}`}>
                 <div className="h-full w-full">
                     {
@@ -14,7 +14,7 @@ export default function PostCard({ post }) {
                             width={500}
                             height={500}
                             alt={post.title}
-                            className="object-cover h-64 rounded-xl"
+                            className="object-cover h-80 sm:h-64 rounded-xl"
                         />
                     }
                     {
