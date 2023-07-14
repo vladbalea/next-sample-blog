@@ -10,7 +10,7 @@ export default async function AllPostsPaginated({ params }) {
     const posts = await getPostsOnPage(currentPage)
     const totalPages = await getNumberOfPages()
 
-    if (currentPage > totalPages) {
+    if (currentPage > 1 && currentPage > totalPages) {
         notFound()
     }
     return (
