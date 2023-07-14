@@ -1,5 +1,6 @@
 import Link from "next/link"
-import PostList from "@/components/post-grid"
+import { MoveRight } from "lucide-react"
+import PostGrid from "@/components/post-grid"
 import { getLatestPosts } from "../lib/contentful"
 
 export default async function Home() {
@@ -8,11 +9,15 @@ export default async function Home() {
         <>
             <h1 className="text-5xl font-bold mb-5">Home page!</h1>
             <p>Welcome to the blog!</p>
-            <h2 className="text-4xl font-bold mb-6 mt-10">
+            <h2 className="flex justify-between text-4xl font-bold mb-6 mt-10">
                 Latest posts
-                <span> <Link href="/all-posts" className="text-blue-500 text-xl">(See all posts)</Link></span>
+                <div className="flex gap-2 text-blue-500">
+                    <Link href="/all-posts" className="italic text-3xl">See all posts
+                    </Link>
+                    <MoveRight size={36} />
+                </div>
             </h2>
-            <PostList posts={posts} />
+            <PostGrid posts={posts} />
         </>
     )
 }

@@ -1,5 +1,8 @@
 import { notFound } from "next/navigation"
+import Image from "next/image"
+import Link from "next/link"
 import ReactMarkdown from "react-markdown"
+import { MoveRight } from "lucide-react"
 import { getAllPostsSlugs, getPostBySlug } from "@/lib/contentful"
 import React from "react"
 
@@ -25,9 +28,30 @@ export default async function BlogPost({ params }) {
         notFound()
     }
     return (
-        <article className="prose max-w-none">
-            <h1>{post.title}</h1>
-            <ReactMarkdown>{post.text}</ReactMarkdown>
-        </article>
+        <>
+            <article>
+                <h1 className="text-4xl font-bold mb-6">{post.title}</h1>
+                {
+                    post.featuredImage &&
+                    <Image
+                        src={post.featuredImage}
+                        width={1000}
+                        height={1000}
+                        alt={post.title}
+                        className="object-cover h-96 md:h-[38rem] w-full rounded-xl mb-6"
+                    />
+                }
+                <ReactMarkdown className="prose max-w-none">{post.text}</ReactMarkdown>
+            </article>
+            {
+                post.category &&
+                <div className="mt-6 mb-6 flex gap-2 text-blue-500">
+                    <Link href={`/categories/${post.category.slug}`} className="font-semibold">
+                        See all posts in {post.category.name}
+                    </Link>
+                    <MoveRight />
+                </div>
+            }
+        </>
     )
 }

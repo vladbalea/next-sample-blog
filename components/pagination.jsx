@@ -1,4 +1,10 @@
 import Link from "next/link"
+
+import {
+    MoveRight,
+    MoveLeft,
+} from "lucide-react"
+
 import { cn } from "@/lib/utils"
 
 export default function Pagination({path, currentPage, totalPages, className}) {
@@ -7,22 +13,34 @@ export default function Pagination({path, currentPage, totalPages, className}) {
     const PreviousPageElement = () => {
         if (currentPage - 1 >= 1) {
             return (
-                <Link href={currentPage - 1 === 1 ? `/${path}` : `/${path}/${currentPage - 1}`} className={cn(baseStyling, "text-right rounded-l-md hover:bg-gray-50")}>Previous</Link>
+                <Link href={currentPage - 1 === 1 ? `/${path}` : `/${path}/${currentPage - 1}`} className={cn(baseStyling, "text-right rounded-l-md hover:bg-gray-50")}>
+                    <MoveLeft size={14} className="inline mr-2" />
+                    Previous
+                </Link>
             )
         } else {
             return (
-                <div className={cn(baseStyling, "text-right rounded-l-md opacity-40")}>Previous</div>
+                <div className={cn(baseStyling, "text-right rounded-l-md opacity-30")}>
+                    <MoveLeft size={16} className="inline mr-2" />
+                    Previous
+                </div>
             )
         }
     }
     const NextPageElement = () => {
         if (currentPage + 1 <= totalPages) {
             return (
-                <Link href={`/${path}/${currentPage + 1}`} className={cn(baseStyling, "rounded-r-md hover:bg-gray-50")}>Next</Link>
+                <Link href={`/${path}/${currentPage + 1}`} className={cn(baseStyling, "rounded-r-md hover:bg-gray-50")}>
+                    Next
+                    <MoveRight size={14} className="inline ml-2" />
+                </Link>
             )
         } else {
             return (
-                <div className={cn(baseStyling, "rounded-r-md opacity-40")}>Next</div>
+                <div className={cn(baseStyling, "rounded-r-md opacity-30")}>
+                    Next
+                    <MoveRight size={16} className="inline ml-2" />
+                </div>
             )
         }
     }
