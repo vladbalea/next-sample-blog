@@ -22,8 +22,9 @@ export default async function RootLayout({ children }) {
                                 inter.className,
                                 "mx-auto w-[90%] lg:w-[50rem] xl:w-[75rem]"
                             )}>
-                <Header categories={categories} />
+                <Header categories={categories} className="mt-2 mb-5" />
                 {children}
+                <div className="mt-6"></div>
             </body>
         </html>
     )

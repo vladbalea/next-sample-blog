@@ -10,7 +10,7 @@ export default function PostListPage({ title, posts, path, currentPage, totalPag
                 path={path}
                 currentPage={currentPage}
                 totalPages={totalPages}
-                className="mt-2 mb-6"
+                className="mt-2"
             />
         </>
     )

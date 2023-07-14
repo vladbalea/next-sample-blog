@@ -12,9 +12,11 @@ import {
     NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
 
-export default function Header({ categories }) {
+import { cn } from "@/lib/utils"
+
+export default function Header({ categories, className }) {
     return (
-        <NavigationMenu className="w-max mx-auto mt-2 mb-5">
+        <NavigationMenu className={cn("w-max mx-auto", className && className)}>
             <NavigationMenuList>
                 <NavigationMenuItem>
                     <Link href="/" legacyBehavior passHref>
