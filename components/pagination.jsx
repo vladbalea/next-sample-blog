@@ -21,7 +21,7 @@ export default function Pagination({path, currentPage, totalPages, className}) {
         } else {
             return (
                 <div className={cn(baseStyling, "text-right rounded-l-md opacity-30")}>
-                    <MoveLeft size={16} className="inline mr-2" />
+                    <MoveLeft size={14} className="inline mr-2" />
                     Previous
                 </div>
             )
@@ -39,7 +39,7 @@ export default function Pagination({path, currentPage, totalPages, className}) {
             return (
                 <div className={cn(baseStyling, "rounded-r-md opacity-30")}>
                     Next
-                    <MoveRight size={16} className="inline ml-2" />
+                    <MoveRight size={14} className="inline ml-2" />
                 </div>
             )
         }

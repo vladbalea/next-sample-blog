@@ -9,12 +9,13 @@ export default async function Home() {
         <>
             <h1 className="text-5xl font-bold mb-5">Home page!</h1>
             <p>Welcome to the blog!</p>
-            <h2 className="flex justify-between text-4xl font-bold mb-6 mt-10">
+            <h2 className="sm:flex justify-between text-4xl font-bold mb-6 mt-10">
                 Latest posts
-                <div className="flex gap-2 text-blue-500">
-                    <Link href="/all-posts" className="italic text-3xl">See all posts
+                <div>
+                    <Link href="/all-posts" className="italic text-blue-500 text-3xl">
+                        See all posts
+                        <MoveRight size={34} className="inline ml-2" />
                     </Link>
-                    <MoveRight size={36} />
                 </div>
             </h2>
             <PostGrid posts={posts} />
