@@ -30,7 +30,7 @@ export default function Header({ categories }) {
                         {
                             categories.map((category) => (
                                 <NavigationMenuItem key={category.id}>
-                                    <Link href={`/categories/${category.slug}`} legacyBehavior passHref>
+                                    <Link href={`/posts/${category.slug}`} legacyBehavior passHref>
                                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                                             {category.name}
                                         </NavigationMenuLink>
@@ -42,7 +42,7 @@ export default function Header({ categories }) {
                     </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <Link href="/all-posts" legacyBehavior passHref>
+                    <Link href="/posts/all" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                             All posts
                         </NavigationMenuLink>

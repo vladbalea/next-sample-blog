@@ -46,7 +46,7 @@ export default async function BlogPost({ params }) {
             {
                 post.category &&
                 <div className="mt-6 mb-6">
-                    <Link href={`/categories/${post.category.slug}`} className="font-semibold text-blue-500">
+                    <Link href={`/posts/${post.category.slug}`} className="font-semibold text-blue-500">
                         See all posts in {post.category.name}
                         <MoveRight size={20} className="inline ml-2" />
                     </Link>

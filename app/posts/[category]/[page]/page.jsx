@@ -20,7 +20,7 @@ export default async function CategoryPostsPaginated({ params }) {
         <PostListPage
             title={`All posts on ${category.name}`}
             posts={posts}
-            path={`categories/${categorySlug}`}
+            path={`posts/${categorySlug}`}
             currentPage={currentPage}
             totalPages={totalPages}
         />

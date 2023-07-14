@@ -13,7 +13,7 @@ export default async function AllPostsPaginated({ params }) {
         <PostListPage
             title="All posts"
             posts={posts}
-            path="all-posts"
+            path="posts/all"
             currentPage={currentPage}
             totalPages={totalPages}
         />
