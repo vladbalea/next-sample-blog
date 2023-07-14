@@ -9,6 +9,10 @@ export default async function AllPostsPaginated({ params }) {
     const currentPage = parseInt(params.page)
     const posts = await getPostsOnPage(currentPage)
     const totalPages = await getNumberOfPages()
+
+    if (currentPage > totalPages) {
+        notFound()
+    }
     return (
         <PostListPage
             title="All posts"

@@ -16,6 +16,10 @@ export default async function CategoryPostsPaginated({ params }) {
     const currentPage = parseInt(params.page)
     const posts = await getPostsOnPage(currentPage, categorySlug)
     const totalPages = await getNumberOfPages(categorySlug)
+
+    if (currentPage > totalPages) {
+        notFound()
+    }
     return (
         <PostListPage
             title={`All posts on ${category.name}`}
