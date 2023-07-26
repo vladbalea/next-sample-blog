@@ -11,12 +11,15 @@ export default function Pagination({path, currentPage, totalPages, className}) {
     if (totalPages <= 1) {
         return undefined
     }
+    const isOnFirstPage = currentPage - 1 < 1
+    const isOnLastPage = currentPage + 1 > totalPages
+
     const baseStyling = "border-t border-b border-gray-300 bg-white px-3 py-2 text-sm text-gray-500"
-    const baseStylingPreviousButton = "text-right rounded-l-md border-l"
-    const baseStylingNextButton = "rounded-r-md border-r border-l"
+    const baseStylingPreviousButton = cn("text-right rounded-l-md border-l", isOnLastPage && "border-r")
+    const baseStylingNextButton = cn("rounded-r-md border-r", !isOnLastPage && "border-l")
 
     const PreviousPageElement = () => {
-        if (currentPage - 1 >= 1) {
+        if (!isOnFirstPage) {
             return (
                 <Link href={currentPage - 1 === 1 ? `/${path}` : `/${path}/${currentPage - 1}`} className={cn(baseStyling, baseStylingPreviousButton, "hover:bg-gray-50")}>
                     <MoveLeft size={14} className="inline mr-2" />
@@ -33,7 +36,7 @@ export default function Pagination({path, currentPage, totalPages, className}) {
         }
     }
     const NextPageElement = () => {
-        if (currentPage + 1 <= totalPages) {
+        if (!isOnLastPage) {
             return (
                 <Link href={`/${path}/${currentPage + 1}`} className={cn(baseStyling, baseStylingNextButton, "hover:bg-gray-50")}>
                     Next
