@@ -28,7 +28,7 @@ export default function Header({ categories, className }) {
                 <NavigationMenuItem>
                     <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <ul className="grid w-[200px] gap-3 p-4 md:w-[400px] md:grid-cols-2 lg:w-[600px]">
+                        <ul className="grid w-max gap-3 p-4">
                         {
                             categories.map((category) => (
                                 <NavigationMenuItem key={category.id}>

@@ -7,8 +7,6 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
@@ -24,18 +22,16 @@ export default async function CategoryPosts({ params }) {
     const parentCategory = category.parentCategoryId === undefined ? undefined : await getCategoryById(category.parentCategoryId)
     return (
         <>
-            <div className="sm:flex gap-5">
+            <div className="sm:flex sm:mb-3 gap-5">
             {
                 subcategories.length > 0 &&
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="outline" className="text-base font-normal mb-2 sm:mb-3">
+                        <Button variant="outline" className="text-base font-normal mb-2 sm:mb-0">
                             See subcategories of {category.name}
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
-                        <DropdownMenuLabel>Subcategories of {category.name}</DropdownMenuLabel>
-                        <DropdownMenuSeparator />
                         {
                             subcategories.map((subcategory) => (
                                 <DropdownMenuItem key={subcategory.id}>
