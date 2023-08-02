@@ -24,12 +24,12 @@ export default async function CategoryPosts({ params }) {
     const parentCategory = category.parentCategoryId === undefined ? undefined : await getCategoryById(category.parentCategoryId)
     return (
         <>
-            <div className="flex gap-5">
+            <div className="sm:flex gap-5">
             {
                 subcategories.length > 0 &&
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="outline" className="text-base font-normal mb-3">
+                        <Button variant="outline" className="text-base font-normal mb-2 sm:mb-3">
                             See subcategories of {category.name}
                         </Button>
                     </DropdownMenuTrigger>
@@ -50,7 +50,7 @@ export default async function CategoryPosts({ params }) {
             }
             {
                 parentCategory !== undefined &&
-                <div className="my-auto">
+                <div className="mb-1 sm:mb-0 sm:my-auto">
                     <Link href={`/posts/${parentCategory.slug}`} className="italic text-blue-500 font-semibold">
                         See all posts in {parentCategory.name}
                         <MoveRight className="inline ml-2" />
